@@ -1,0 +1,49 @@
+\documentclass[
+    12pt,
+    onehalfspacing,
+    secnum,
+]
+{thepaper}
+
+
+\usepackage{amsmath}
+\usepackage{lipsum}
+\usepackage{mhchem} % For chemical notation
+\usepackage{siunitx}    % For SI units
+\usepackage{gensymb}    % Symbols
+\usepackage[misc]{ifsym} % For the \Letter symbol
+\usepackage{tabularx}   % For making Knitr tables compatible
+\usepackage{multirow}
+\usepackage{multicol}
+
+\bibliographystyle{aps}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%         TITLE PAGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{My Awesome Template for Research Article}
+
+\author[1]{Minjoon Hong}
+\author[2, *]{Co-author}
+
+% Affiliations
+\affil[1]{School of Life Sciences, University of Sussex}
+\affil[2]{University of Somewhere}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{src/0_abstract.tex}
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%         MAIN TEXT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{multicols}{2}
+\input{src/1_introduction.tex}
+\bibliography{main}
+% \end{multicols}
+
+\end{document}
