@@ -95,9 +95,9 @@
 \if@onehalfspacing\linespread{1.65}\fi
 \if@doublespacing\linespread{2.0}\fi
 \if@endfloat\AtBeginDelayedFloats{% Also changes for endfloat captions
-      \renewcommand{\baselinestretch}{1.2}
-      \if@onehalfspacing\renewcommand{\baselinestretch}{1.5}\fi%
-      \if@doublespacing\renewcommand{\baselinestretch}{2.0}\fi}\fi
+    \renewcommand{\baselinestretch}{1.2}
+    \if@onehalfspacing\renewcommand{\baselinestretch}{1.5}\fi%
+    \if@doublespacing\renewcommand{\baselinestretch}{2.0}\fi}\fi
 
 % Colour scheme
 \RequirePackage{graphicx}
@@ -114,33 +114,33 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{authblk} % redefines \author command - needs to go before {silence}
 \RequirePackage[left=1.5cm,%
-                marginparwidth=4cm,%
-                marginparsep=0.5cm,%
-                right=1.5cm,%
-                top=2cm,%
-                bottom=2.5cm,%
-                headheight=21pt,%
-                headsep=2\baselineskip,%
-                columnsep=2em,%
-                letterpaper]{geometry}%
+  marginparwidth=4cm,%
+  marginparsep=0.5cm,%
+  right=1.5cm,%
+  top=2cm,%
+  bottom=2.5cm,%
+  headheight=21pt,%
+  headsep=2\baselineskip,%
+  columnsep=2em,%
+  letterpaper]{geometry}%
 \if@reqslineno\linenumbers\newgeometry{left=1.5cm,%
-                marginparwidth=3.5cm,%
-                marginparsep=1cm,%
-                right=1.5cm,%
-                top=2cm,%
-                bottom=2.5cm,%
-                headheight=21pt,%
-                headsep=2\baselineskip,%
-                columnsep=2em}\fi
+    marginparwidth=3.5cm,%
+    marginparsep=1cm,%
+    right=1.5cm,%
+    top=2cm,%
+    bottom=2.5cm,%
+    headheight=21pt,%
+    headsep=2\baselineskip,%
+    columnsep=2em}\fi
 \RequirePackage[strict]{changepage} % strict for use with sidenotes
 \RequirePackage{silence}
 \WarningFilter{caption}{The option `hypcap=true' will be ignored}
 \RequirePackage[labelfont={bf},%
-                labelsep=period,%
-                justification=raggedright,%
-                singlelinecheck=false,%
-                tableposition=top,font=small]
-                {caption}
+  labelsep=period,%
+  justification=raggedright,%
+  singlelinecheck=false,%
+  tableposition=top,font=small]
+{caption}
 
 % \captionsetup*[table]{skip=\medskipamount}
 
@@ -153,24 +153,24 @@
 \if@secnum\else\setcounter{secnumdepth}{0}\fi
 \RequirePackage[explicit]{titlesec}
 \titleformat{\section}
-  {\bfseries\color{darkColour}\scshape}
-  {\thesection}{10pt}{#1}[]
+{\bfseries\color{darkColour}\scshape}
+{\thesection}{10pt}{#1}[]
 \titleformat{\subsection}
-  {\bfseries}
-  {\thesubsection}{10pt}{#1}[]
+{\bfseries}
+{\thesubsection}{10pt}{#1}[]
 \titleformat{\subsubsection}
-  {}
-  {\thesubsubsection}{10pt}{#1}[]    
+{}
+{\thesubsubsection}{10pt}{#1}[]
 \titleformat{\paragraph}
-  {\small\itshape}
-  {\theparagraph}{10pt}{#1}[]
+{\small\itshape}
+{\theparagraph}{10pt}{#1}[]
 
 % Title spacing
 \titlespacing*{\section}{0pc}{3ex \@plus4pt \@minus3pt}{2pt}
 \titlespacing*{\subsection}{0pc}{2.5ex \@plus3pt \@minus2pt}{1pt}
 \titlespacing*{\subsubsection}{0pc}{2ex \@plus2.5pt \@minus1.5pt}{0pt}
 \titlespacing*{\paragraph}{0pc}{1.5ex \@plus2pt \@minus1pt}{0pt}
-  
+
 \RequirePackage{enumitem}
 \setlist{noitemsep}
 
@@ -213,13 +213,21 @@
 \setlength{\affilsep}{16pt}
 \renewcommand{\AB@affilsepx}{; \protect\Affilfont}
 
+% \corrauth: Show email address of corresponding author in footer of the first page
+% Ex) Corresponing author: \corrauth{email@address}
+\newcommand{\corrauth}[1]{%
+  \interfootnotelinepenalty=10000 
+  \footnotetext[0]{\textbf{Corresponding author:} #1}%
+}
+
+
 \newcommand{\themetadata}{%
-    \ifx\empty\@metadata\else
+  \ifx\empty\@metadata\else
     \@metadata\fi
 }
 
 % Insert authors and affiliations
-\patchcmd{\@author}{\AB@authlist\\[\affilsep]\AB@affillist}{\AB@authlist\\[\affilsep] 
+\patchcmd{\@author}{\AB@authlist\\[\affilsep]\AB@affillist}{\AB@authlist\\[\affilsep]
   \AB@affillist}{}{}
 
 % Insert title
@@ -234,17 +242,23 @@
 
 % Insert abstract
 \renewenvironment{abstract}{%
-   \setlength{\parindent}{0pt}
-   \textcolor{MediumGrey}{\rule{\textwidth}{2pt}}
-   \vskip8pt
-   \textcolor{lightColour}{\large\bfseries\sffamily\abstractname\space}
+  \setlength{\parindent}{0pt}
+  \textcolor{MediumGrey}{\rule{\textwidth}{2pt}}
+  \vskip8pt
+  \textcolor{lightColour}{\large\bfseries\sffamily\abstractname\space}
 
-   % Here we squeeze in the margin metadata
-   \marginpar{\raggedright\footnotesize\themetadata\par}
+  % Here we squeeze in the margin metadata
+  %  \marginpar{\raggedright\footnotesize\themetadata\par}
 }{%
-   \vskip8pt
-   \textcolor{MediumGrey}{\rule{\textwidth}{2pt}}
-   \vskip8pt
+  \vskip4pt
+  \textcolor{MediumGrey}{\rule{\textwidth}{2pt}}
+  \vskip4pt
+}
+
+\newcommand{\keywords}[1]{%
+  \vskip-4pt
+  \noindent \textcolor{darkColour}{\small\bfseries\sffamily Keywords:} #1
+  \vskip8pt
 }
 
 %% Insert a grey line to separate floats from main text
